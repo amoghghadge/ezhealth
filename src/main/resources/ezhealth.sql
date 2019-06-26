@@ -3,24 +3,24 @@ USE ezhealth;
 CREATE TABLE providers
 (
     license_no VARCHAR(10) not null,
-    last_name NVARCHAR(50) default null,
-    first_name NVARCHAR(50) default null,
-    middle_name NVARCHAR(50) default null,
-    suffix NVARCHAR(8) default null,
+    last_name CHAR(50) default null,
+    first_name CHAR(50) default null,
+    middle_name CHAR(50) default null,
+    suffix CHAR(8) default null,
     issue_date DATETIME(4) default null,
     expiration_date DATETIME(4) default null,
     public_email VARCHAR(50) default null,
     web_site VARCHAR(75) default null,
-    pp_prac_name NVARCHAR(175) default null,
-    pp_address1 NVARCHAR(100) default null,
-    pp_address2 NVARCHAR(100) default null,
-    pp_city NVARCHAR(50) default null,
+    pp_prac_name CHAR(175) default null,
+    pp_address1 CHAR(100) default null,
+    pp_address2 CHAR(100) default null,
+    pp_city CHAR(50) default null,
     pp_state VARCHAR(20) default null,
     pp_zip VARCHAR(10) default null,
     pp_telephone VARCHAR(20) default null,
     pp_trans_serv_avail TINYINT(1) default null,
-    pp_language_office NVARCHAR(255) default null,
-    pp_language_practitioner NVARCHAR(255) default null,
+    pp_language_office CHAR(255) default null,
+    pp_language_practitioner CHAR(255) default null,
     pp_percent_location INT(20) default null,
     pp_days_seen VARCHAR(40) default null,
     board_cert TINYINT(1) default null,
@@ -39,9 +39,9 @@ CREATE TABLE providers
     continue_date VARCHAR(10) default null,
     lic_status VARCHAR(25) default null,
     flagofnoticeoraction TINYINT(1) default null,
-    grad_school NVARCHAR(150) default null,
-    grad_school_state NVARCHAR(75) default null,
-    grad_school_country NVARCHAR(50) default null,
+    grad_school CHAR(150) default null,
+    grad_school_state CHAR(75) default null,
+    grad_school_country CHAR(50) default null,
     grad_completion VARCHAR(5) default null,
     primary key(license_no)
 );
@@ -211,52 +211,52 @@ CREATE UNIQUE INDEX idxpp_license_no ON providers_publications (license_no);
 
 create table lookup_academic_rank
 (
-    id NVARCHAR(10) not null,
-    rank_description NVARCHAR(50) default null,
+    id CHAR(10) not null,
+    rank_description CHAR(50) default null,
     primary key(id)
 );
 
 create table lookup_foreign_language
 (
-    language_id NVARCHAR(10) not null,
-    language_description NVARCHAR(255) default null,
+    language_id CHAR(10) not null,
+    language_description CHAR(255) default null,
     primary key(language_id)
 );
 
 create table lookup_hospital
 (
-    id NVARCHAR(10) not null,
-    hospital NVARCHAR(150) default null,
+    id CHAR(10) not null,
+    hospital CHAR(150) default null,
     primary key(id)
 );
 
 create table lookup_school
 (
-    id NVARCHAR(10) not null,
-    school_name NVARCHAR(150) default null,
-    school_type NVARCHAR(3) default null,
+    id CHAR(10) not null,
+    school_name CHAR(150) default null,
+    school_type CHAR(3) default null,
     primary key(id)
 );
 
 create table lookup_self_designate_specialty
 (
-    id NVARCHAR(10),
-    specialty NVARCHAR(150),
-    specialty_type NVARCHAR(3),
+    id CHAR(10),
+    specialty CHAR(150),
+    specialty_type CHAR(3),
     primary key(id)
 );
 
 create table lookup_specialty
 (
-    id NVARCHAR(10),
-    specialty_name NVARCHAR(150),
-    specialty_type NVARCHAR(5),
+    id CHAR(10),
+    specialty_name CHAR(150),
+    specialty_type CHAR(5),
     primary key(id)
 );
 
 create table lookup_specialty_malpractice
 (
-    id NVARCHAR(50),
-    specialty NVARCHAR(255),
+    id CHAR(50),
+    specialty CHAR(255),
     primary key(id)
 );
