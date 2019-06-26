@@ -1,7 +1,6 @@
-DROP DATABASE ezhealth;
 CREATE DATABASE ezhealth;
 USE ezhealth;
-CREATE TABLE main_table
+CREATE TABLE providers
 (
     license_no VARCHAR(10) not null,
     last_name NVARCHAR(50) default null,
@@ -47,13 +46,14 @@ CREATE TABLE main_table
     primary key(license_no)
 );
 
-CREATE UNIQUE INDEX idx_license_no ON main_table (license_no);
-CREATE INDEX idx_first_name ON main_table (first_name);
-CREATE INDEX idx_last_name ON main_table (last_name);
-CREATE INDEX idx_pp_prac_name ON main_table (pp_prac_name);
-CREATE INDEX idx_pp_zip ON main_table (pp_zip);
-CREATE INDEX idx_medicaid on main_table (medicaid);
-CREATE INDEX idx_medicare on main_table (medicare);
+CREATE UNIQUE INDEX idx_license_no ON providers (license_no);
+CREATE INDEX idx_first_name ON providers (first_name);
+CREATE INDEX idx_last_name ON providers (last_name);
+CREATE INDEX idx_pp_prac_name ON providers (pp_prac_name);
+CREATE INDEX idx_pp_zip ON providers (pp_zip);
+CREATE INDEX idx_medicaid on providers (medicaid);
+CREATE INDEX idx_medicare on providers (medicare);
+CREATE INDEX idx_self_spec_code on providers (self_spec_code);
 
 
 create table providers_academic_appointments
@@ -195,6 +195,7 @@ create table providers_practice_address
     primary key(license_no)
 );
 CREATE UNIQUE INDEX idxppa_license_no ON providers_practice_address (license_no);
+CREATE UNIQUE INDEX idxppa_zip ON providers_practice_address (zip);
 
 create table providers_publications
 (
