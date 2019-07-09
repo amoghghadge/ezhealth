@@ -175,7 +175,7 @@ public class Providers {
 		this.board_eligible=board_eligible;
 	}
 
-	public String getSelf_spec_code(){
+	public String getSelfSpecCode(){
 		return self_spec_code;
 	}
 

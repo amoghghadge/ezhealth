@@ -1,5 +1,5 @@
 package healthcare.ez.dao;
-
+/*
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sbc.model.SeatHold;
 import com.sbc.model.Seats;
-
+*/
 public class ProvidersDAO  {
-
+/*
 	private JdbcTemplate jdbcTemplate;
 
 	public SeatHoldDAOImpl(DataSource dataSource) {
@@ -31,5 +31,5 @@ public class ProvidersDAO  {
 		if (rows<=0) seatHoldId=-1;
 		return seatHoldId;
 	}
-
+*/
 }
