@@ -27,8 +27,8 @@ import healthcare.ez.model.Providers;
 
 public class ProvidersDAO {
 
-	public static final String RESOURCE_ARN = "arn:aws:rds:us-east-1:420279361566:cluster:ezhealth";
-    public static final String SECRET_ARN = "arn:aws:secretsmanager:us-east-1:420279361566:secret:rds-db-credentials/cluster-KEATTN6U4T6DI5ANTF3CXWUA5U/amogh-77wkHw";
+	public static final String RESOURCE_ARN = "aealth";
+    public static final String SECRET_ARN = "arn:aws7wkHw";
 
 	public Providers search() {
 
