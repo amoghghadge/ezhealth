@@ -31,6 +31,10 @@ public class Providers {
 	private char grad_school_country;
 	private String grad_completion;
 
+	public Providers(){
+		
+	}
+
 	public char getLastName(){
 		return last_name;
 	}

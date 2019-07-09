@@ -13,7 +13,52 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sbc.model.SeatHold;
 import com.sbc.model.Seats;
 */
-public class ProvidersDAO  {
+
+import java.util.List;
+
+import com.amazonaws.services.rdsdata.AWSRDSData;
+import com.amazonaws.services.rdsdata.AWSRDSDataClient;
+import com.amazonaws.services.rdsdata.model.ExecuteSqlRequest;
+import com.amazonaws.services.rdsdata.model.ExecuteSqlResult;
+import com.amazonaws.services.rdsdata.model.Record;
+import com.amazonaws.services.rdsdata.model.SqlStatementResult;
+
+import healthcare.ez.model.Providers;
+
+public class ProvidersDAO {
+
+	public static final String RESOURCE_ARN = "arn:aws:rds:us-east-1:420279361566:cluster:ezhealth";
+    public static final String SECRET_ARN = "arn:aws:secretsmanager:us-east-1:420279361566:secret:rds-db-credentials/cluster-KEATTN6U4T6DI5ANTF3CXWUA5U/amogh-77wkHw";
+
+	public Providers search() {
+
+		AWSRDSData rdsData = AWSRDSDataClient.builder().build();
+
+        ExecuteSqlRequest request = new ExecuteSqlRequest()
+        .withDbClusterOrInstanceArn(RESOURCE_ARN)
+        .withAwsSecretStoreArn(SECRET_ARN)
+        .withDatabase("ezhealth")
+        .withSqlStatements("select * from providers");
+
+        ExecuteSqlResult result = rdsData.executeSql(request);
+
+        for (SqlStatementResult fields: result.getSqlStatementResults()) {
+
+            List<Record> list = fields.getResultFrame().getRecords();
+
+            String stringValue = fields.getResultFrame().getRecords().get(0).toString();
+
+            //long numberValue = Long.parseLong(fields.getResultFrame().getRecords().get(1).toString());
+
+            System.out.println(String.format("Fetched row: string = %s", stringValue));
+            System.out.println(list);
+
+        }
+
+        return "hi";
+
+	}
+
 /*
 	private JdbcTemplate jdbcTemplate;
 
