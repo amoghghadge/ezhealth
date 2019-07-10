@@ -13,8 +13,8 @@ import healthcare.ez.model.Providers;
 
 public class ProvidersDAO {
 
-	public static final String RESOURCE_ARN = "none";
-	public static final String SECRET_ARN = "none";
+	public static final String RESOURCE_ARN = "aealth";
+    public static final String SECRET_ARN = "arn:aws7wkHw";
 
 	public static Providers[] search() {
 
