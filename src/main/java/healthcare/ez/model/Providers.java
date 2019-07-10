@@ -1,21 +1,21 @@
 package healthcare.ez.model;
 
 public class Providers {
-	private char last_name;
-	private char first_name;
-	private char middle_name;
-	private char suffix;
+	private String last_name;
+	private String first_name;
+	private String middle_name;
+	private String suffix;
 	private String public_email;
 	private String web_site;
-	private char pp_prac_name;
-	private char pp_address1;
-	private char pp_address2;
-	private char pp_city;
+	private String pp_prac_name;
+	private String pp_address1;
+	private String pp_address2;
+	private String pp_city;
 	private String pp_state;
 	private String pp_zip;
 	private String pp_telephone;
-	private char pp_language_office;
-	private char pp_language_practitioner;
+	private String pp_language_office;
+	private String pp_language_practitioner;
 	private int pp_percent_location;
 	private String pp_days_seen;
 	private String board_eligible;
@@ -26,44 +26,44 @@ public class Providers {
 	private String hospital_state;
 	private String continue_date;
 	private String lic_status;
-	private char grad_school;
-	private char grad_school_state;
-	private char grad_school_country;
+	private String grad_school;
+	private String grad_school_state;
+	private String grad_school_country;
 	private String grad_completion;
 
 	public Providers(){
 		
 	}
 
-	public char getLastName(){
+	public String getLastName(){
 		return last_name;
 	}
 
-	public void setLastName(char last_name){
+	public void setLastName(String last_name){
 		this.last_name=last_name;
 	}
 
-	public char getFirstName(){
+	public String getFirstName(){
 		return first_name;
 	}
 
-	public void setFirstName(char first_name){
+	public void setFirstName(String first_name){
 		this.first_name=first_name;
 	}
 
-	public char getMiddleName(){
+	public String getMiddleName(){
 		return middle_name;
 	}
 
-	public void setMiddleName(char middle_name){
+	public void setMiddleName(String middle_name){
 		this.middle_name=middle_name;
 	}
 
-	public char getSuffix(){
+	public String getSuffix(){
 		return suffix;
 	}
 
-	public void setSuffix(char suffix){
+	public void setSuffix(String suffix){
 		this.suffix=suffix;
 	}
 
@@ -83,35 +83,35 @@ public class Providers {
 		this.web_site=web_site;
 	}
 
-	public char getPpPracName(){
+	public String getPpPracName(){
 		return pp_prac_name;
 	}
 
-	public void setPpPracName(char pp_prac_name){
+	public void setPpPracName(String pp_prac_name){
 		this.pp_prac_name=pp_prac_name;
 	}
 
-	public char getPpAddress1(){
+	public String getPpAddress1(){
 		return pp_address1;
 	}
 
-	public void setPpAddress1(char pp_address1){
+	public void setPpAddress1(String pp_address1){
 		this.pp_address1=pp_address1;
 	}
 
-	public char getPpAddress2(){
+	public String getPpAddress2(){
 		return pp_address2;
 	}
 
-	public void setPpAddress2(char pp_address2){
+	public void setPpAddress2(String pp_address2){
 		this.pp_address2=pp_address2;
 	}
 
-	public char getPpCity(){
+	public String getPpCity(){
 		return pp_city;
 	}
 
-	public void setPpCity(char pp_city){
+	public void setPpCity(String pp_city){
 		this.pp_city=pp_city;
 	}
 
@@ -139,19 +139,19 @@ public class Providers {
 		this.pp_telephone=pp_telephone;
 	}
 
-	public char getPpLanguageOffice(){
+	public String getPpLanguageOffice(){
 		return pp_language_office;
 	}
 
-	public void setPpLanguageOffice(char pp_language_office){
+	public void setPpLanguageOffice(String pp_language_office){
 		this.pp_language_office=pp_language_office;
 	}
 
-	public char getPpLanguagePractitioner(){
+	public String getPpLanguagePractitioner(){
 		return pp_language_practitioner;
 	}
 
-	public void setPpLanguagePractitioner(char pp_language_practitioner){
+	public void setPpLanguagePractitioner(String pp_language_practitioner){
 		this.pp_language_practitioner=pp_language_practitioner;
 	}
 
@@ -235,27 +235,27 @@ public class Providers {
 		this.lic_status=lic_status;
 	}
 
-	public char getGradSchool(){
+	public String getGradSchool(){
 		return grad_school;
 	}
 
-	public void setGradSchool(char grad_school){
+	public void setGradSchool(String grad_school){
 		this.grad_school=grad_school;
 	}
 
-	public char getGradSchoolState(){
+	public String getGradSchoolState(){
 		return grad_school_state;
 	}
 
-	public void setGradSchoolState(char grad_school_state){
+	public void setGradSchoolState(String grad_school_state){
 		this.grad_school_state=grad_school_state;
 	}
 
-	public char getGradSchoolCountry(){
+	public String getGradSchoolCountry(){
 		return grad_school_country;
 	}
 
-	public void setGradSchoolCountry(char grad_school_country){
+	public void setGradSchoolCountry(String grad_school_country){
 		this.grad_school_country=grad_school_country;
 	}
 

@@ -1,18 +1,4 @@
 package healthcare.ez.dao;
-/*
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.sql.DataSource;
-
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.sbc.model.SeatHold;
-import com.sbc.model.Seats;
-*/
 
 import java.util.List;
 
@@ -27,10 +13,10 @@ import healthcare.ez.model.Providers;
 
 public class ProvidersDAO {
 
-	public static final String RESOURCE_ARN = "arn:aws:rds:us-east-1:420279361566:cluster:ezhealth";
-    public static final String SECRET_ARN = "arn:aws:secretsmanager:us-east-1:420279361566:secret:rds-db-credentials/cluster-KEATTN6U4T6DI5ANTF3CXWUA5U/amogh-77wkHw";
+	public static final String RESOURCE_ARN = "none";
+	public static final String SECRET_ARN = "none";
 
-	public Providers search() {
+	public static Providers[] search() {
 
 		AWSRDSData rdsData = AWSRDSDataClient.builder().build();
 
@@ -42,39 +28,50 @@ public class ProvidersDAO {
 
         ExecuteSqlResult result = rdsData.executeSql(request);
 
+		int size = (result.getSqlStatementResults().size())/30;
+
+		Providers[] doctors = new Providers[size];
+
+		for (int i=0; i<size; i++) {
+
+			doctors[i] = new Providers();
+
+		}
+
         for (SqlStatementResult fields: result.getSqlStatementResults()) {
 
-            List<Record> list = fields.getResultFrame().getRecords();
+			System.out.println(fields.getResultFrame().getRecords());
 
-            String stringValue = fields.getResultFrame().getRecords().get(0).toString();
+			int increments = 30;
+			
+			for (int i=0; i<size; i++) {
+			
+				if (i==0) {
+					
+					doctors[0].setLastName(fields.getResultFrame().getRecords().get(1).toString());
+					doctors[0].setFirstName(fields.getResultFrame().getRecords().get(2).toString());
+					doctors[0].setSelfSpecCode(fields.getResultFrame().getRecords().get(19).toString());
+					doctors[0].setPpPracName(fields.getResultFrame().getRecords().get(7).toString());
+					doctors[0].setPpZip(fields.getResultFrame().getRecords().get(12).toString());
+					doctors[0].setPpCity(fields.getResultFrame().getRecords().get(10).toString());
+			
+				} else {
+			
+					doctors[i].setLastName(fields.getResultFrame().getRecords().get(1+increments*i).toString());
+					doctors[i].setFirstName(fields.getResultFrame().getRecords().get(2+increments*i).toString());
+					doctors[i].setSelfSpecCode(fields.getResultFrame().getRecords().get(19+increments*i).toString());
+					doctors[i].setPpPracName(fields.getResultFrame().getRecords().get(7+increments*i).toString());
+					doctors[i].setPpZip(fields.getResultFrame().getRecords().get(12+increments*i).toString());
+					doctors[i].setPpCity(fields.getResultFrame().getRecords().get(10+increments*i).toString());
+			
+				}
+			
+			}
+			
+		}
 
-            //long numberValue = Long.parseLong(fields.getResultFrame().getRecords().get(1).toString());
-
-            System.out.println(String.format("Fetched row: string = %s", stringValue));
-            System.out.println(list);
-
-        }
-
-        return "hi";
+        return doctors;
 
 	}
 
-/*
-	private JdbcTemplate jdbcTemplate;
-
-	public SeatHoldDAOImpl(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
-
-	
-
-	@Transactional
-	@Override
-	public int reserveSeats(int seatHoldId, String customerEmail) {
-		String sql = "update seats set status=2 where (DATEDIFF('second',lastheldtime, CURRENT_TIMESTAMP())-900 <0) AND status = 1 AND seatholdId=?";
-		int rows = this.jdbcTemplate.update(sql, seatHoldId);
-		if (rows<=0) seatHoldId=-1;
-		return seatHoldId;
-	}
-*/
 }

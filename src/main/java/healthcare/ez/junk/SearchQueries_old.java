@@ -1,4 +1,4 @@
-package healthcare.ez.finddoctors;
+package healthcare.ez.junk;
 
 import com.amazonaws.services.rdsdata.AWSRDSData;
 import com.amazonaws.services.rdsdata.AWSRDSDataClient;
@@ -6,10 +6,6 @@ import com.amazonaws.services.rdsdata.model.ExecuteSqlRequest;
 import com.amazonaws.services.rdsdata.model.ExecuteSqlResult;
 import com.amazonaws.services.rdsdata.model.Record;
 import com.amazonaws.services.rdsdata.model.SqlStatementResult;
-
-import healthcare.ez.dao.ProvidersDAO;
-import healthcare.ez.model.Providers;
-
 //import com.amazonaws.util.AWSRequestMetrics.Field;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.Context;
@@ -17,7 +13,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import java.util.List;
 import java.util.Map;
 
-public class SearchQueries implements RequestHandler <Map <String, Object>, Providers[]> {
+public class SearchQueries_old implements RequestHandler <Map <String, Object>, String> {
 
     public static final String RESOURCE_ARN = "arn:aws:rds:us-east-1:420279361566:cluster:ezhealth";
     public static final String SECRET_ARN = "arn:aws:secretsmanager:us-east-1:420279361566:secret:rds-db-credentials/cluster-KEATTN6U4T6DI5ANTF3CXWUA5U/amogh-77wkHw";
@@ -28,7 +24,7 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, Prov
 
     }
 
-    public Providers[] handleRequest(Map<String, Object> input, Context context) {
+    public String handleRequest(Map<String, Object> input, Context context) {
 
         //From the first box (Condition, procedure, doctor name..)
         String last_name = input.getOrDefault("last_name", null).toString();
@@ -49,7 +45,7 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, Prov
 
         RESPONSE = search(last_name, first_name, specialty, condition, pp_prac_name, pp_zip, city, date, insurance);
 
-        return ProvidersDAO.search();
+        return RESPONSE;
 
     }
 
