@@ -19,8 +19,8 @@ import java.util.Map;
 
 public class SearchQueries implements RequestHandler <Map <String, Object>, Providers[]> {
 
-    public static final String RESOURCE_ARN = "arn:aws:rds:us-east-1:420279361566:cluster:ezhealth";
-    public static final String SECRET_ARN = "arn:aws:secretsmanager:us-east-1:420279361566:secret:rds-db-credentials/cluster-KEATTN6U4T6DI5ANTF3CXWUA5U/amogh-77wkHw";
+    public static final String RESOURCE_ARN = "ealth";
+    public static final String SECRET_ARN = "arn:aws:stial-77wkHw";
     public static String RESPONSE = "";
     public static void main(String[] args) {
         
