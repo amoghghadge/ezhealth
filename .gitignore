@@ -1,5 +1,6 @@
-/target/
+target
 .settings
 .metadata
 .classpath
 .project
+src/main/java/healthcare/ez/Credentials.java

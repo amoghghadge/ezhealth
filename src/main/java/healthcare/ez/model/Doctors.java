@@ -1,6 +1,7 @@
 package healthcare.ez.model;
 
-public class Providers {
+public class Doctors {
+	private String license_no;
 	private String last_name;
 	private String first_name;
 	private String middle_name;
@@ -19,7 +20,8 @@ public class Providers {
 	private int pp_percent_location;
 	private String pp_days_seen;
 	private String board_eligible;
-	private String self_spec_code;
+	private String self_spec;
+	private String self_spec_type;
 	private int years_in_us_practice;
 	private int years_out_us_practice;
 	private String hospital_affiliated;
@@ -31,7 +33,7 @@ public class Providers {
 	private String grad_school_country;
 	private String grad_completion;
 
-	public Providers(){
+	public Doctors(){
 		
 	}
 
@@ -179,12 +181,12 @@ public class Providers {
 		this.board_eligible=board_eligible;
 	}
 
-	public String getSelfSpecCode(){
-		return self_spec_code;
+	public String getSelfSpec(){
+		return self_spec;
 	}
 
-	public void setSelfSpecCode(String self_spec_code){
-		this.self_spec_code=self_spec_code;
+	public void setSelfSpec(String self_spec){
+		this.self_spec=self_spec;
 	}
 
 	public int getYearsInUsPractice(){
@@ -265,5 +267,21 @@ public class Providers {
 
 	public void setGradCompletion(String grad_completion){
 		this.grad_completion=grad_completion;
+	}
+
+	public String getLicenseNo() {
+		return license_no;
+	}
+
+	public void setLicenseNo(String license_no) {
+		this.license_no = license_no;
+	}
+
+	public String getSelSpecType() {
+		return self_spec_type;
+	}
+
+	public void setSelfSpecType(String self_spec_type) {
+		this.self_spec_type = self_spec_type;
 	}
 }
