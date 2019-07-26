@@ -6,6 +6,8 @@ public class Doctors {
 	private String first_name;
 	private String middle_name;
 	private String suffix;
+	private String license_issue_date;
+	private String license_expiration_date;
 	private String public_email;
 	private String web_site;
 	private String pp_prac_name;
@@ -15,23 +17,33 @@ public class Doctors {
 	private String pp_state;
 	private String pp_zip;
 	private String pp_telephone;
+	private boolean pp_trans_serv_avail;
 	private String pp_language_office;
 	private String pp_language_practitioner;
 	private int pp_percent_location;
 	private String pp_days_seen;
+	private boolean board_cert;
 	private String board_eligible;
-	private String self_spec;
-	private String self_spec_type;
+	private String self_spec_code;
 	private int years_in_us_practice;
 	private int years_out_us_practice;
+	private boolean medicaid;
+	private boolean medicaid_new_patients;
+	private boolean medicare;
+	private boolean medicare_provider;
+	private boolean medicare_new_patients;
 	private String hospital_affiliated;
 	private String hospital_state;
+	private String continue_hours;
 	private String continue_date;
 	private String lic_status;
+	private String flagofnoticeoraction;
 	private String grad_school;
 	private String grad_school_state;
 	private String grad_school_country;
 	private String grad_completion;
+	private String self_spec;
+	private String self_spec_type;
 
 	public Doctors(){
 		
@@ -283,5 +295,101 @@ public class Doctors {
 
 	public void setSelfSpecType(String self_spec_type) {
 		this.self_spec_type = self_spec_type;
+	}
+
+	public String getLicenseIssueDate() {
+		return license_issue_date;
+	}
+
+	public void setLicenseIssueDate(String license_issue_date) {
+		this.license_issue_date = license_issue_date;
+	}
+
+	public String getLicenseExpirationDate() {
+		return license_expiration_date;
+	}
+
+	public void setLicenseExpirationDate(String license_expiration_date) {
+		this.license_expiration_date = license_expiration_date;
+	}
+
+	public boolean isPpTransServAvail() {
+		return pp_trans_serv_avail;
+	}
+
+	public void setPpTransServAvail(boolean pp_trans_serv_avail) {
+		this.pp_trans_serv_avail = pp_trans_serv_avail;
+	}
+
+	public boolean isBoardCert() {
+		return board_cert;
+	}
+
+	public void setBoardCert(boolean board_cert) {
+		this.board_cert = board_cert;
+	}
+
+	public String getSelfSpecCode() {
+		return self_spec_code;
+	}
+
+	public void setSelfSpecCode(String self_spec_code) {
+		this.self_spec_code = self_spec_code;
+	}
+
+	public boolean isMedicaid() {
+		return medicaid;
+	}
+
+	public void setMedicaid(boolean medicaid) {
+		this.medicaid = medicaid;
+	}
+
+	public boolean isMedicaidNewPatients() {
+		return medicaid_new_patients;
+	}
+
+	public void setMedicaidNewPatients(boolean medicaid_new_patients) {
+		this.medicaid_new_patients = medicaid_new_patients;
+	}
+
+	public boolean isMedicare() {
+		return medicare;
+	}
+
+	public void setMedicare(boolean medicare) {
+		this.medicare = medicare;
+	}
+
+	public boolean isMedicareProvider() {
+		return medicare_provider;
+	}
+
+	public void setMedicareProvider(boolean medicare_provider) {
+		this.medicare_provider = medicare_provider;
+	}
+
+	public boolean isMedicareNewPatients() {
+		return medicare_new_patients;
+	}
+
+	public void setMedicareNewPatients(boolean medicare_new_patients) {
+		this.medicare_new_patients = medicare_new_patients;
+	}
+
+	public String getContinueHours() {
+		return continue_hours;
+	}
+
+	public void setContinueHours(String continue_hours) {
+		this.continue_hours = continue_hours;
+	}
+
+	public String getFlagofnoticeoraction() {
+		return flagofnoticeoraction;
+	}
+
+	public void setFlagofnoticeoraction(String flagofnoticeoraction) {
+		this.flagofnoticeoraction = flagofnoticeoraction;
 	}
 }

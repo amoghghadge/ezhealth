@@ -49,7 +49,8 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, List
         //From the fourth box (Insurance)
         String insurance = input.getOrDefault("insurance", "NULL").toString();    
 
-        //RESPONSE = search(RESOURCE_ARN, SECRET_ARN, last_name, first_name, specialty, condition, pp_prac_name, pp_zip, city, date, insurance);
+        //RESPONSE =
+        search(RESOURCE_ARN, SECRET_ARN, last_name, first_name, specialty, condition, pp_prac_name, pp_zip, city, date, insurance);
 
         if (specialty != "NULL") {
 
@@ -74,7 +75,7 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, List
 
     }
 
-    public static String search (String RESOURCE_ARN, String SECRET_ARN, String last_name, String first_name, String specialty, String condition, String pp_prac_name, String pp_zip, String city,
+    public static void search (String RESOURCE_ARN, String SECRET_ARN, String last_name, String first_name, String specialty, String condition, String pp_prac_name, String pp_zip, String city,
     String date, String insurance) {
 
         AWSRDSData rdsData = AWSRDSDataClient.builder().build();
@@ -88,8 +89,6 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, List
         ExecuteStatementResult result = rdsData.executeStatement(request);
 
         for (List<Field> fields : result.getRecords()) {
-
-            
 
             String stringValue = fields.get(0).getStringValue();
             //long numberValue = fields.get(1).getLongValue();
@@ -112,7 +111,7 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, List
 
         }
 
-        return "hi";
+        //return "hi";
 
     }
 /*
