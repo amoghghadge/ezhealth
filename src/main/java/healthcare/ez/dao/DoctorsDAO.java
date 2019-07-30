@@ -12,6 +12,7 @@ import healthcare.ez.model.Doctors;
 
 public class DoctorsDAO {
 
+	//TO-DO: Set up date and insurance
 	public static List<Doctors> searchAllDoctors(String RESOURCE_ARN, String SECRET_ARN) {
 		
 		AWSRDSData rdsData = AWSRDSDataClient.builder().build();
@@ -32,17 +33,15 @@ public class DoctorsDAO {
 
 		List<Doctors> doctors = new ArrayList<Doctors>();
 
-		for (List<Field> fields : result.getRecords()) { // TO-DO: Read in all the data into the
+		for (List<Field> fields : result.getRecords()) { // TO-DO: Translate codes to actual values
 			Doctors doctor = new Doctors();
-			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpec(self_spec);
-			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpecType(self_spec_type);
 			doctor.setLicenseNo(fields.get(0).getStringValue());
 			doctor.setLastName(fields.get(1).getStringValue());
 			doctor.setFirstName(fields.get(2).getStringValue());
 			doctor.setMiddleName(fields.get(3).getStringValue());
 			doctor.setSuffix(fields.get(4).getStringValue());
+			doctor.setLicenseIssueDate(fields.get(5).getStringValue());
+			doctor.setLicenseExpirationDate(fields.get(6).getStringValue());
 			doctor.setPublicEmail(fields.get(7).getStringValue());
 			doctor.setWebSite(fields.get(8).getStringValue());
 			doctor.setPpPracName(fields.get(9).getStringValue());
@@ -52,6 +51,35 @@ public class DoctorsDAO {
 			doctor.setPpState(fields.get(13).getStringValue());
 			doctor.setPpZip(fields.get(14).getStringValue());
 			doctor.setPpTelephone(fields.get(15).getStringValue());
+			doctor.setPpTransServAvail(fields.get(16).getBooleanValue()); //Are translation services available
+			doctor.setPpLanguageOffice(fields.get(17).getStringValue()); //Codes of languages spoken in office
+			doctor.setPpLanguagePractitioner(fields.get(18).getStringValue()); //Codes of languages spoken by Practicioner
+			doctor.setPpPercentLocation(fields.get(19).getLongValue());
+			doctor.setPpDaysSeen(fields.get(20).getStringValue());
+			doctor.setBoardCert(fields.get(21).getBooleanValue()); //Does the practicioner have a board certification
+			doctor.setBoardEligible(fields.get(22).getStringValue()); //Code of board certification
+			doctor.setSelfSpecCode(fields.get(23).getStringValue());
+			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpec(self_spec);
+			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpecType(self_spec_type);
+			doctor.setYearsInUsPractice(fields.get(24).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setYearsOutUsPractice(fields.get(25).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setMedicaid(fields.get(26).getBooleanValue());
+			doctor.setMedicaidNewPatients(fields.get(27).getBooleanValue());
+			doctor.setMedicare(fields.get(28).getBooleanValue()); //True = is a medicare participating provider
+			doctor.setMedicareProvider(fields.get(29).getBooleanValue()); //True = is a medicare non-participating provider
+			doctor.setMedicareNewPatients(fields.get(30).getLongValue());
+			doctor.setHospitalAffiliated(fields.get(31).getStringValue());
+			doctor.setHospitalState(fields.get(32).getStringValue());
+			doctor.setContinueHours(fields.get(33).getDoubleValue());
+			doctor.setContinueDate(fields.get(34).getStringValue());
+			doctor.setLicStatus(fields.get(35).getStringValue());
+			doctor.setFlagofnoticeoraction(fields.get(36).getBooleanValue()); //Does the practicioner have flag of notice or action on file
+			doctor.setGradSchool(fields.get(37).getStringValue()); //Code of Grad school or name of foreign grad school
+			doctor.setGradSchoolState(fields.get(38).getStringValue());
+			doctor.setGradSchoolCountry(fields.get(39).getStringValue());
+			doctor.setGradCompletion(fields.get(40).getStringValue());
 			doctors.add(doctor);
 		}
 
@@ -81,17 +109,15 @@ public class DoctorsDAO {
 
 		List<Doctors> doctors = new ArrayList<Doctors>();
 
-		for (List<Field> fields : result.getRecords()) { // TO-DO: Read in all the data into the
+		for (List<Field> fields : result.getRecords()) { // TO-DO: Translate codes to actual values
 			Doctors doctor = new Doctors();
-			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpec(self_spec);
-			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpecType(self_spec_type);
 			doctor.setLicenseNo(fields.get(0).getStringValue());
 			doctor.setLastName(fields.get(1).getStringValue());
 			doctor.setFirstName(fields.get(2).getStringValue());
 			doctor.setMiddleName(fields.get(3).getStringValue());
 			doctor.setSuffix(fields.get(4).getStringValue());
+			doctor.setLicenseIssueDate(fields.get(5).getStringValue());
+			doctor.setLicenseExpirationDate(fields.get(6).getStringValue());
 			doctor.setPublicEmail(fields.get(7).getStringValue());
 			doctor.setWebSite(fields.get(8).getStringValue());
 			doctor.setPpPracName(fields.get(9).getStringValue());
@@ -101,6 +127,35 @@ public class DoctorsDAO {
 			doctor.setPpState(fields.get(13).getStringValue());
 			doctor.setPpZip(fields.get(14).getStringValue());
 			doctor.setPpTelephone(fields.get(15).getStringValue());
+			doctor.setPpTransServAvail(fields.get(16).getBooleanValue()); //Are translation services available
+			doctor.setPpLanguageOffice(fields.get(17).getStringValue()); //Codes of languages spoken in office
+			doctor.setPpLanguagePractitioner(fields.get(18).getStringValue()); //Codes of languages spoken by Practicioner
+			doctor.setPpPercentLocation(fields.get(19).getLongValue());
+			doctor.setPpDaysSeen(fields.get(20).getStringValue());
+			doctor.setBoardCert(fields.get(21).getBooleanValue()); //Does the practicioner have a board certification
+			doctor.setBoardEligible(fields.get(22).getStringValue()); //Code of board certification
+			doctor.setSelfSpecCode(fields.get(23).getStringValue());
+			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpec(self_spec);
+			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpecType(self_spec_type);
+			doctor.setYearsInUsPractice(fields.get(24).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setYearsOutUsPractice(fields.get(25).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setMedicaid(fields.get(26).getBooleanValue());
+			doctor.setMedicaidNewPatients(fields.get(27).getBooleanValue());
+			doctor.setMedicare(fields.get(28).getBooleanValue()); //True = is a medicare participating provider
+			doctor.setMedicareProvider(fields.get(29).getBooleanValue()); //True = is a medicare non-participating provider
+			doctor.setMedicareNewPatients(fields.get(30).getLongValue());
+			doctor.setHospitalAffiliated(fields.get(31).getStringValue());
+			doctor.setHospitalState(fields.get(32).getStringValue());
+			doctor.setContinueHours(fields.get(33).getDoubleValue());
+			doctor.setContinueDate(fields.get(34).getStringValue());
+			doctor.setLicStatus(fields.get(35).getStringValue());
+			doctor.setFlagofnoticeoraction(fields.get(36).getBooleanValue()); //Does the practicioner have flag of notice or action on file
+			doctor.setGradSchool(fields.get(37).getStringValue()); //Code of Grad school or name of foreign grad school
+			doctor.setGradSchoolState(fields.get(38).getStringValue());
+			doctor.setGradSchoolCountry(fields.get(39).getStringValue());
+			doctor.setGradCompletion(fields.get(40).getStringValue());
 			doctors.add(doctor);
 		}
 
@@ -108,7 +163,7 @@ public class DoctorsDAO {
 
 	}
 
-	// TO-DO: Set up date and insurance
+	//TO-DO: Set up date and insurance
 	public static List<Doctors> searchBySpecialty(String RESOURCE_ARN, String SECRET_ARN, String specialty, String pp_prac_name, String pp_zip, String city, String date, String insurance) {
 
 		String id = specialtyToId(RESOURCE_ARN, SECRET_ARN, specialty);
@@ -131,17 +186,15 @@ public class DoctorsDAO {
 
 		List<Doctors> doctors = new ArrayList<Doctors>();
 
-		for (List<Field> fields : result.getRecords()) { // TO-DO: Read in all the data into the
+		for (List<Field> fields : result.getRecords()) { // TO-DO: Translate codes to actual values
 			Doctors doctor = new Doctors();
-			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpec(self_spec);
-			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpecType(self_spec_type);
 			doctor.setLicenseNo(fields.get(0).getStringValue());
 			doctor.setLastName(fields.get(1).getStringValue());
 			doctor.setFirstName(fields.get(2).getStringValue());
 			doctor.setMiddleName(fields.get(3).getStringValue());
 			doctor.setSuffix(fields.get(4).getStringValue());
+			doctor.setLicenseIssueDate(fields.get(5).getStringValue());
+			doctor.setLicenseExpirationDate(fields.get(6).getStringValue());
 			doctor.setPublicEmail(fields.get(7).getStringValue());
 			doctor.setWebSite(fields.get(8).getStringValue());
 			doctor.setPpPracName(fields.get(9).getStringValue());
@@ -151,6 +204,35 @@ public class DoctorsDAO {
 			doctor.setPpState(fields.get(13).getStringValue());
 			doctor.setPpZip(fields.get(14).getStringValue());
 			doctor.setPpTelephone(fields.get(15).getStringValue());
+			doctor.setPpTransServAvail(fields.get(16).getBooleanValue()); //Are translation services available
+			doctor.setPpLanguageOffice(fields.get(17).getStringValue()); //Codes of languages spoken in office
+			doctor.setPpLanguagePractitioner(fields.get(18).getStringValue()); //Codes of languages spoken by Practicioner
+			doctor.setPpPercentLocation(fields.get(19).getLongValue());
+			doctor.setPpDaysSeen(fields.get(20).getStringValue());
+			doctor.setBoardCert(fields.get(21).getBooleanValue()); //Does the practicioner have a board certification
+			doctor.setBoardEligible(fields.get(22).getStringValue()); //Code of board certification
+			doctor.setSelfSpecCode(fields.get(23).getStringValue());
+			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpec(self_spec);
+			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpecType(self_spec_type);
+			doctor.setYearsInUsPractice(fields.get(24).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setYearsOutUsPractice(fields.get(25).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setMedicaid(fields.get(26).getBooleanValue());
+			doctor.setMedicaidNewPatients(fields.get(27).getBooleanValue());
+			doctor.setMedicare(fields.get(28).getBooleanValue()); //True = is a medicare participating provider
+			doctor.setMedicareProvider(fields.get(29).getBooleanValue()); //True = is a medicare non-participating provider
+			doctor.setMedicareNewPatients(fields.get(30).getLongValue());
+			doctor.setHospitalAffiliated(fields.get(31).getStringValue());
+			doctor.setHospitalState(fields.get(32).getStringValue());
+			doctor.setContinueHours(fields.get(33).getDoubleValue());
+			doctor.setContinueDate(fields.get(34).getStringValue());
+			doctor.setLicStatus(fields.get(35).getStringValue());
+			doctor.setFlagofnoticeoraction(fields.get(36).getBooleanValue()); //Does the practicioner have flag of notice or action on file
+			doctor.setGradSchool(fields.get(37).getStringValue()); //Code of Grad school or name of foreign grad school
+			doctor.setGradSchoolState(fields.get(38).getStringValue());
+			doctor.setGradSchoolCountry(fields.get(39).getStringValue());
+			doctor.setGradCompletion(fields.get(40).getStringValue());
 			doctors.add(doctor);
 		}
 
@@ -182,17 +264,15 @@ public class DoctorsDAO {
 
 		List<Doctors> doctors = new ArrayList<Doctors>();
 
-		for (List<Field> fields : result.getRecords()) { // TO-DO: Read in all the data into the
+		for (List<Field> fields : result.getRecords()) { // TO-DO: Translate codes to actual values
 			Doctors doctor = new Doctors();
-			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpec(self_spec);
-			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
-			doctor.setSelfSpecType(self_spec_type);
 			doctor.setLicenseNo(fields.get(0).getStringValue());
 			doctor.setLastName(fields.get(1).getStringValue());
 			doctor.setFirstName(fields.get(2).getStringValue());
 			doctor.setMiddleName(fields.get(3).getStringValue());
 			doctor.setSuffix(fields.get(4).getStringValue());
+			doctor.setLicenseIssueDate(fields.get(5).getStringValue());
+			doctor.setLicenseExpirationDate(fields.get(6).getStringValue());
 			doctor.setPublicEmail(fields.get(7).getStringValue());
 			doctor.setWebSite(fields.get(8).getStringValue());
 			doctor.setPpPracName(fields.get(9).getStringValue());
@@ -202,6 +282,35 @@ public class DoctorsDAO {
 			doctor.setPpState(fields.get(13).getStringValue());
 			doctor.setPpZip(fields.get(14).getStringValue());
 			doctor.setPpTelephone(fields.get(15).getStringValue());
+			doctor.setPpTransServAvail(fields.get(16).getBooleanValue()); //Are translation services available
+			doctor.setPpLanguageOffice(fields.get(17).getStringValue()); //Codes of languages spoken in office
+			doctor.setPpLanguagePractitioner(fields.get(18).getStringValue()); //Codes of languages spoken by Practicioner
+			doctor.setPpPercentLocation(fields.get(19).getLongValue());
+			doctor.setPpDaysSeen(fields.get(20).getStringValue());
+			doctor.setBoardCert(fields.get(21).getBooleanValue()); //Does the practicioner have a board certification
+			doctor.setBoardEligible(fields.get(22).getStringValue()); //Code of board certification
+			doctor.setSelfSpecCode(fields.get(23).getStringValue());
+			String self_spec = idToSpecialty(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpec(self_spec);
+			String self_spec_type = idToType(RESOURCE_ARN, SECRET_ARN, fields.get(23).getStringValue());
+			doctor.setSelfSpecType(self_spec_type);
+			doctor.setYearsInUsPractice(fields.get(24).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setYearsOutUsPractice(fields.get(25).getLongValue()); //-1 = 0 years, 0 = 0 to 1 years
+			doctor.setMedicaid(fields.get(26).getBooleanValue());
+			doctor.setMedicaidNewPatients(fields.get(27).getBooleanValue());
+			doctor.setMedicare(fields.get(28).getBooleanValue()); //True = is a medicare participating provider
+			doctor.setMedicareProvider(fields.get(29).getBooleanValue()); //True = is a medicare non-participating provider
+			doctor.setMedicareNewPatients(fields.get(30).getLongValue());
+			doctor.setHospitalAffiliated(fields.get(31).getStringValue());
+			doctor.setHospitalState(fields.get(32).getStringValue());
+			doctor.setContinueHours(fields.get(33).getDoubleValue());
+			doctor.setContinueDate(fields.get(34).getStringValue());
+			doctor.setLicStatus(fields.get(35).getStringValue());
+			doctor.setFlagofnoticeoraction(fields.get(36).getBooleanValue()); //Does the practicioner have flag of notice or action on file
+			doctor.setGradSchool(fields.get(37).getStringValue()); //Code of Grad school or name of foreign grad school
+			doctor.setGradSchoolState(fields.get(38).getStringValue());
+			doctor.setGradSchoolCountry(fields.get(39).getStringValue());
+			doctor.setGradCompletion(fields.get(40).getStringValue());
 			doctors.add(doctor);
 		}
 

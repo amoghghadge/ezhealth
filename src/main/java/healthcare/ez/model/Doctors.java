@@ -20,24 +20,24 @@ public class Doctors {
 	private boolean pp_trans_serv_avail;
 	private String pp_language_office;
 	private String pp_language_practitioner;
-	private int pp_percent_location;
+	private Long pp_percent_location;
 	private String pp_days_seen;
 	private boolean board_cert;
 	private String board_eligible;
 	private String self_spec_code;
-	private int years_in_us_practice;
-	private int years_out_us_practice;
+	private Long years_in_us_practice;
+	private Long years_out_us_practice;
 	private boolean medicaid;
 	private boolean medicaid_new_patients;
 	private boolean medicare;
 	private boolean medicare_provider;
-	private boolean medicare_new_patients;
+	private Long medicare_new_patients;
 	private String hospital_affiliated;
 	private String hospital_state;
-	private String continue_hours;
+	private Double continue_hours;
 	private String continue_date;
 	private String lic_status;
-	private String flagofnoticeoraction;
+	private boolean flagofnoticeoraction;
 	private String grad_school;
 	private String grad_school_state;
 	private String grad_school_country;
@@ -169,12 +169,12 @@ public class Doctors {
 		this.pp_language_practitioner=pp_language_practitioner;
 	}
 
-	public int getPpPercentLocation(){
+	public Long getPpPercentLocation() {
 		return pp_percent_location;
 	}
 
-	public void setPpPercentLocation(int pp_percent_location){
-		this.pp_percent_location=pp_percent_location;
+	public void setPpPercentLocation(Long long1){
+		this.pp_percent_location=long1;
 	}
 
 	public String getPpDaysSeen(){
@@ -201,19 +201,19 @@ public class Doctors {
 		this.self_spec=self_spec;
 	}
 
-	public int getYearsInUsPractice(){
+	public Long getYearsInUsPractice(){
 		return years_in_us_practice;
 	}
 
-	public void setYearsInUsPractice(int years_in_us_practice){
+	public void setYearsInUsPractice(Long years_in_us_practice){
 		this.years_in_us_practice=years_in_us_practice;
 	}
 
-	public int getYearsOutUsPractice(){
+	public Long getYearsOutUsPractice(){
 		return years_out_us_practice;
 	}
 
-	public void setYearsOutUsPractice(int years_out_us_practice){
+	public void setYearsOutUsPractice(Long years_out_us_practice){
 		this.years_out_us_practice=years_out_us_practice;
 	}
 
@@ -369,27 +369,27 @@ public class Doctors {
 		this.medicare_provider = medicare_provider;
 	}
 
-	public boolean isMedicareNewPatients() {
+	public Long isMedicareNewPatients() {
 		return medicare_new_patients;
 	}
 
-	public void setMedicareNewPatients(boolean medicare_new_patients) {
+	public void setMedicareNewPatients(Long medicare_new_patients) {
 		this.medicare_new_patients = medicare_new_patients;
 	}
 
-	public String getContinueHours() {
+	public Double getContinueHours() {
 		return continue_hours;
 	}
 
-	public void setContinueHours(String continue_hours) {
+	public void setContinueHours(Double continue_hours) {
 		this.continue_hours = continue_hours;
 	}
 
-	public String getFlagofnoticeoraction() {
+	public boolean getFlagofnoticeoraction() {
 		return flagofnoticeoraction;
 	}
 
-	public void setFlagofnoticeoraction(String flagofnoticeoraction) {
+	public void setFlagofnoticeoraction(boolean flagofnoticeoraction) {
 		this.flagofnoticeoraction = flagofnoticeoraction;
 	}
 }
