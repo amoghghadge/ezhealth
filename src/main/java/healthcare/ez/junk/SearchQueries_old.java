@@ -1,5 +1,6 @@
 package healthcare.ez.junk;
 
+/*
 import com.amazonaws.services.rdsdata.AWSRDSData;
 import com.amazonaws.services.rdsdata.AWSRDSDataClient;
 import com.amazonaws.services.rdsdata.model.ExecuteSqlRequest;
@@ -12,18 +13,19 @@ import com.amazonaws.services.lambda.runtime.Context;
 
 import java.util.List;
 import java.util.Map;
+*/
 
-public class SearchQueries_old implements RequestHandler <Map <String, Object>, String> {
+public class SearchQueries_old { //implements RequestHandler <Map <String, Object>, String>
 
-    public static final String RESOURCE_ARN = "arn:aws:rds:us-east-1:420279361566:cluster:ezhealth";
-    public static final String SECRET_ARN = "arn:aws:secretsmanager:us-east-1:420279361566:secret:rds-db-credentials/cluster-KEATTN6U4T6DI5ANTF3CXWUA5U/amogh-77wkHw";
+    public static final String RESOURCE_ARN = "secret";
+    public static final String SECRET_ARN = "secret";
     public static String RESPONSE = "";
     public static void main(String[] args) {
         
         System.out.println("Hello");
 
     }
-
+/*
     public String handleRequest(Map<String, Object> input, Context context) {
 
         //From the first box (Condition, procedure, doctor name..)
@@ -78,6 +80,7 @@ public class SearchQueries_old implements RequestHandler <Map <String, Object>, 
         return "hi";
 
     }
+*/
 /*
     public static String search (String last_name, String first_name, String specialty, String condition, String pp_prac_name, String pp_zip, String city,
    String date, String insurance) {

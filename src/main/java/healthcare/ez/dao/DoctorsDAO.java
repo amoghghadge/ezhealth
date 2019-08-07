@@ -97,7 +97,7 @@ public class DoctorsDAO {
 		.withSecretArn(SECRET_ARN)
 		.withDatabase("ezhealth")
 		.withSql("select * from providers where last_name = '" + last_name +"' or first_name = '" + first_name + "' or pp_zip = '" + pp_zip +
-		"' or pp_prac_name = '" + pp_prac_name + "' or city = '" + city + "'");
+		"' or pp_prac_name = '" + pp_prac_name + "' or pp_city = '" + city + "'");
 
 		ExecuteStatementResult result = rdsData.executeStatement(request);
 
@@ -174,7 +174,7 @@ public class DoctorsDAO {
 		.withResourceArn(RESOURCE_ARN)
 		.withSecretArn(SECRET_ARN)
 		.withDatabase("ezhealth")
-		.withSql("select * from providers where self_spec_code = '" + id + "' or pp_zip = '" + pp_zip + "' or pp_prac_name = '" + pp_prac_name + "' or city = '" + city + "'");
+		.withSql("select * from providers where self_spec_code = '" + id + "' or pp_zip = '" + pp_zip + "' or pp_prac_name = '" + pp_prac_name + "' or pp_city = '" + city + "'");
 
 		ExecuteStatementResult result = rdsData.executeStatement(request);
 
@@ -252,7 +252,7 @@ public class DoctorsDAO {
 		.withResourceArn(RESOURCE_ARN)
 		.withSecretArn(SECRET_ARN)
 		.withDatabase("ezhealth")
-		.withSql("select * from providers where self_spec_code = '" + id + "' or pp_zip = '" + pp_zip + "' or pp_prac_name = '" + pp_prac_name + "' or city = '" + city + "'");
+		.withSql("select * from providers where self_spec_code = '" + id + "' or pp_zip = '" + pp_zip + "' or pp_prac_name = '" + pp_prac_name + "' or pp_city = '" + city + "'");
 
 		ExecuteStatementResult result = rdsData.executeStatement(request);
 
