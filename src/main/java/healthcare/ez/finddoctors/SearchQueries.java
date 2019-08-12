@@ -52,22 +52,34 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, List
         //RESPONSE =
         search(RESOURCE_ARN, SECRET_ARN, last_name, first_name, specialty, condition, pp_prac_name, pp_zip, city, date, insurance);
 
-        if (specialty != "NULL") {
+        if (specialty != "NULL" || specialty != "") {
 
-            return DoctorsDAO.searchBySpecialty(RESOURCE_ARN, SECRET_ARN, specialty, pp_prac_name, pp_zip, city, date, insurance);
+            System.out.println(specialty);
+            return DoctorsDAO.searchBySpecialty(RESOURCE_ARN, SECRET_ARN, specialty, pp_zip, city, date, insurance);
 
-        } else if (condition != "NULL") {
+        } else if (condition != "NULL" || condition != "") {
 
-            return DoctorsDAO.searchByCondition(RESOURCE_ARN, SECRET_ARN, condition, pp_prac_name, pp_zip, city, date, insurance);
+            System.out.println(condition);
+            return DoctorsDAO.searchByCondition(RESOURCE_ARN, SECRET_ARN, condition, pp_zip, city, date, insurance);
 
-        } else if (last_name == "NULL" && first_name == "NULL" && pp_prac_name == "NULL" && pp_zip == "NULL" && city == "NULL" && date == "NULL" && 
-        insurance == "NULL"){
+        } else if (last_name != "NULL" || last_name != "" || first_name != "NULL" || first_name != ""){
 
-            return DoctorsDAO.searchAllDoctors(RESOURCE_ARN, SECRET_ARN);
+            System.out.println(last_name);
+            System.out.println(first_name);            
+            return DoctorsDAO.searchByName(RESOURCE_ARN, SECRET_ARN, last_name, first_name, pp_zip, city, date, insurance);
+
+        } else if (pp_prac_name != "NULL" || pp_prac_name != ""){
+
+            return DoctorsDAO.searchByPracName(RESOURCE_ARN, SECRET_ARN, pp_prac_name, pp_zip, city, date, insurance);
+
+        } else if (pp_zip != "NULL" || pp_zip != "" || city != "NULL" || city != "" || date != "NULL" || date != "" ||
+        insurance != "NULL" || insurance != "") {
+
+            return DoctorsDAO.searchByOther(RESOURCE_ARN, SECRET_ARN, pp_zip, city, date, insurance);
 
         } else {
 
-            return DoctorsDAO.searchByName(RESOURCE_ARN, SECRET_ARN, last_name, first_name, pp_prac_name, pp_zip, city, date, insurance);
+            return DoctorsDAO.searchAllDoctors(RESOURCE_ARN, SECRET_ARN);
 
         }
 
