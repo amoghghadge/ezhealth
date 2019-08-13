@@ -51,34 +51,37 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, List
 
         //RESPONSE =
         search(RESOURCE_ARN, SECRET_ARN, last_name, first_name, specialty, condition, pp_prac_name, pp_zip, city, date, insurance);
+        System.out.println("Search method complete");
 
-        if (specialty != "NULL" || specialty != "") {
+        if (specialty.equals("NULL") == false || specialty.equals("") == false) {
 
-            System.out.println(specialty);
+            System.out.println("Searched by specialty of '" + specialty + "'");
             return DoctorsDAO.searchBySpecialty(RESOURCE_ARN, SECRET_ARN, specialty, pp_zip, city, date, insurance);
 
-        } else if (condition != "NULL" || condition != "") {
+        } else if (condition.equals("NULL") == false || condition.equals("") == false) {
 
-            System.out.println(condition);
+            System.out.println("Searched by condition of " + condition);
             return DoctorsDAO.searchByCondition(RESOURCE_ARN, SECRET_ARN, condition, pp_zip, city, date, insurance);
 
-        } else if (last_name != "NULL" || last_name != "" || first_name != "NULL" || first_name != ""){
+        } else if (first_name.equals("NULL") == false || first_name.equals("") == false || last_name.equals("NULL") == false || last_name.equals("") == false){
 
-            System.out.println(last_name);
-            System.out.println(first_name);            
+            System.out.println("Searched by name of " + last_name + ", " + first_name);
             return DoctorsDAO.searchByName(RESOURCE_ARN, SECRET_ARN, last_name, first_name, pp_zip, city, date, insurance);
 
-        } else if (pp_prac_name != "NULL" || pp_prac_name != ""){
+        } else if (pp_prac_name.equals("NULL") == false || pp_prac_name.equals("") == false){
 
+            System.out.println("Searched by practice name of " + pp_prac_name);
             return DoctorsDAO.searchByPracName(RESOURCE_ARN, SECRET_ARN, pp_prac_name, pp_zip, city, date, insurance);
 
-        } else if (pp_zip != "NULL" || pp_zip != "" || city != "NULL" || city != "" || date != "NULL" || date != "" ||
-        insurance != "NULL" || insurance != "") {
+        } else if (pp_zip.equals("NULL") == false || pp_zip.equals("") == false || city.equals("NULL") == false || city.equals("") == false || 
+        date.equals("NULL") == false || date.equals("") == false || insurance.equals("NULL") == false || insurance.equals("") == false) {
 
+            System.out.println("Searched by other");
             return DoctorsDAO.searchByOther(RESOURCE_ARN, SECRET_ARN, pp_zip, city, date, insurance);
 
         } else {
 
+            System.out.println("Searched all doctors");
             return DoctorsDAO.searchAllDoctors(RESOURCE_ARN, SECRET_ARN);
 
         }
