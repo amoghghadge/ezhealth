@@ -32,49 +32,53 @@ public class SearchQueries implements RequestHandler <Map <String, Object>, List
         String RESOURCE_ARN = credentials.getResourceArn();
         String SECRET_ARN = credentials.getSecretArn();
 
-        //From the first box (Condition, procedure, doctor name..)
-        String last_name = input.getOrDefault("last_name", "NULL").toString();
-        String first_name = input.getOrDefault("first_name", "NULL").toString();
-        String specialty = input.getOrDefault("specialty", "NULL").toString();
-        String condition = input.getOrDefault("condition", "NULL").toString();
-        String pp_prac_name = input.getOrDefault("pp_prac_name", "NULL").toString();
+        //From the first box (Condition, procedure, doctor name..) 
+        String last_name = input.getOrDefault("last_name", "").toString();
+        String first_name = input.getOrDefault("first_name", "").toString();
+        String specialty = input.getOrDefault("specialty", "").toString();
+        String condition = input.getOrDefault("condition", "").toString();
+        String pp_prac_name = input.getOrDefault("pp_prac_name", "").toString();
         
         //From the second box (Zip code or City)
-        String pp_zip = input.getOrDefault("pp_zip", "NULL").toString();
-        String city = input.getOrDefault("city", "NULL").toString();
+        String pp_zip = input.getOrDefault("pp_zip", "").toString();
+        String city = input.getOrDefault("city", "").toString();
 
         //From the third box (Appointment Date)
-        String date = input.getOrDefault("date", "NULL").toString();
+        String date = input.getOrDefault("date", "").toString();
 
         //From the fourth box (Insurance)
-        String insurance = input.getOrDefault("insurance", "NULL").toString();    
+        String insurance = input.getOrDefault("insurance", "").toString();    
 
         //RESPONSE =
         search(RESOURCE_ARN, SECRET_ARN, last_name, first_name, specialty, condition, pp_prac_name, pp_zip, city, date, insurance);
         System.out.println("Search method complete");
 
-        if (specialty.equals("NULL") == false || specialty.equals("") == false) {
+        if (specialty.equals("") == false) {
 
             System.out.println("Searched by specialty of '" + specialty + "'");
+            /*
+            System.out.println(specialty.isEmpty());
+            System.out.println(!specialty.isEmpty());
+            System.out.println(specialty.equals("") == false);
+            */
             return DoctorsDAO.searchBySpecialty(RESOURCE_ARN, SECRET_ARN, specialty, pp_zip, city, date, insurance);
 
-        } else if (condition.equals("NULL") == false || condition.equals("") == false) {
+        } else if (condition.equals("") == false) {
 
             System.out.println("Searched by condition of " + condition);
             return DoctorsDAO.searchByCondition(RESOURCE_ARN, SECRET_ARN, condition, pp_zip, city, date, insurance);
 
-        } else if (first_name.equals("NULL") == false || first_name.equals("") == false || last_name.equals("NULL") == false || last_name.equals("") == false){
+        } else if (first_name.equals("") == false || last_name.equals("") == false){
 
             System.out.println("Searched by name of " + last_name + ", " + first_name);
             return DoctorsDAO.searchByName(RESOURCE_ARN, SECRET_ARN, last_name, first_name, pp_zip, city, date, insurance);
 
-        } else if (pp_prac_name.equals("NULL") == false || pp_prac_name.equals("") == false){
+        } else if (pp_prac_name.equals("") == false){
 
             System.out.println("Searched by practice name of " + pp_prac_name);
             return DoctorsDAO.searchByPracName(RESOURCE_ARN, SECRET_ARN, pp_prac_name, pp_zip, city, date, insurance);
 
-        } else if (pp_zip.equals("NULL") == false || pp_zip.equals("") == false || city.equals("NULL") == false || city.equals("") == false || 
-        date.equals("NULL") == false || date.equals("") == false || insurance.equals("NULL") == false || insurance.equals("") == false) {
+        } else if (pp_zip.equals("") == false || city.equals("") == false || date.equals("") == false || insurance.equals("") == false) {
 
             System.out.println("Searched by other");
             return DoctorsDAO.searchByOther(RESOURCE_ARN, SECRET_ARN, pp_zip, city, date, insurance);
